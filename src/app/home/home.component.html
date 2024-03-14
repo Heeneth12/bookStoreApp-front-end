@@ -1,0 +1,35 @@
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 m-2">
+  <div
+    *ngFor="let item of bookData"
+    class="rounded-lg shadow-md overflow-hidden"
+  >
+    <img
+      src="{{ item.bookLogo }}"
+      alt="Book Cover"
+      class="w-full h-48 object-cover"
+    />
+    <div class="p-2">
+      <div class="flex justify-between items-center">
+        <h3 class="text-lg font-medium font-bold text-gray-900">
+          {{ item.bookName }}
+        </h3>
+        <h5 class="text-lg font-medium font-bold text-gray-900">
+          {{ item.bookAuthor }}
+        </h5>
+      </div>
+      <p class="text-gray-700">{{ item.bookDescription }}</p>
+      <p class="text-gray-700">
+        <span class="text-red-500 font-bold">₹ {{ item.bookPrize }}</span>
+      </p>
+      <a
+        href="#"
+        class="mt-2 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-green-500 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300"
+      >
+        Add to Cart
+      </a>
+    </div>
+  </div>
+  <div *ngIf="!bookData">
+    <p>Loading data...</p>
+  </div>
+</div>
