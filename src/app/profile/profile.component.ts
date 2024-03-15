@@ -1,33 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component } from '@angular/core';
+import {
+  HttpClient,
+  HttpClientModule,
+  HttpHeaders,
+} from '@angular/common/http';
 
 @Component({
-  selector: 'header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css'],
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrl: './profile.component.css',
 })
-export class HeaderComponent implements OnInit {
-  isOpen: boolean = false;
-  showDropdown: boolean = false;
-  public userData: any;
-
+export class ProfileComponent {
   constructor(private http: HttpClient) {}
+  url: string = '';
+
+  profileData: any;
 
   ngOnInit(): void {
-    this.fetchToken();
-  }
-  logout() {
-    localStorage.removeItem('jwtToken');
+    this.fetchData();
   }
 
-  toggleMenu(): void {
-    this.isOpen = !this.isOpen;
-  }
-  toggleDropdown() {
-    this.showDropdown = !this.showDropdown;
-  }
-
-  fetchToken() {
+  fetchData() {
     const token: string | null = localStorage.getItem('jwtToken'); // Updated to allow null
     console.log('token:', token);
 
@@ -39,8 +32,8 @@ export class HeaderComponent implements OnInit {
       // Pass headers as options parameter
       this.http.get<any>(url, { headers: headers }).subscribe(
         (response) => {
-          this.userData = response;
-          console.log(this.userData);
+          this.profileData = response;
+          console.log(this.profileData);
         },
         (error) => {
           console.error('Error:', error);

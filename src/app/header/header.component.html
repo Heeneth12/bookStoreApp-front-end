@@ -1,7 +1,7 @@
 <div class="flex items-center justify-between h-16 bg-gray-800 text-white px-4">
   <nav class="flex items-center space-x-4">
     <div class="flex items-center justify-center">
-      <a href="/" class="hover:text-gray-400 p-4"
+      <a href="/" class="hover:text-gray-400 p-1"
         ><svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -17,6 +17,9 @@
           />
         </svg>
       </a>
+      <a class="hidden sm:block items-center justify-center mt-4"
+        ><h2>Book Store</h2></a
+      >
     </div>
 
     <a href="#" class="hover:text-gray-400 p-4">Home</a>
@@ -41,7 +44,7 @@
         />
       </svg>
     </a>
-    <a href="#" class="hover:text-gray-400 p-4"
+    <!-- <a href="/login" class="hover:text-gray-400 p-4"
       ><svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -56,29 +59,40 @@
           d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z"
         />
       </svg>
-    </a>
-  </div>
-</div>
-<div>
-  <div class="bg-gray-100 w-screen justify-center items-center">
-    <div class="bg-white p-12 pr-24 rounded-b-3xl shadow-md bg-gray-200">
-      <!-- Label -->
-      <label
-        for="search"
-        class="block text-gray-700 text-base font-bold-md font-size-lg mb-2"
-        >Find the book
-      </label>
-      <label for="search" class="block text-gray-700 text-2xl font-bold mb-2"
-        >you've been looking for</label
+    </a> -->
+
+    <div class="relative">
+      <div class="p-2 hover:bg-blue-900 rounded-lg cursor-pointer">
+        <div
+          (click)="toggleDropdown()"
+          class="hover:"
+          *ngIf="userData != null; else elseBlock"
+        >
+          {{ userData.email }}
+        </div>
+        <ng-template #elseBlock>
+          <a href="/login" class="text-white">Login</a>
+        </ng-template>
+      </div>
+
+      <!-- Dropdown content -->
+      <div
+        *ngIf="showDropdown"
+        class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-10"
       >
-      <!-- Search Bar -->
-      <input
-        id="search"
-        type="text"
-        placeholder="Search..."
-        style="width: 50%"
-        class="px-4 py-2 text-gray-700 bg-gray-200 rounded-md focus:outline-blue focus:bg-green focus:border-blue-500"
-      />
+        <a
+          href="/profile"
+          class="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+          >profile</a
+        >
+        <a
+          href="/"
+          (click)="logout()"
+          class="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+          >logout</a
+        >
+        <!-- Add more options as needed -->
+      </div>
     </div>
   </div>
 </div>
