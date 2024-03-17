@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router'; // Import Router module
 
 @Component({
   selector: 'login',
@@ -12,7 +13,7 @@ export class LoginComponent {
 
   data: any;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {} // Inject Router module
 
   sendData() {
     console.log('Received email:', this.email);
@@ -41,6 +42,7 @@ export class LoginComponent {
           // Save token to local storage
           localStorage.setItem('jwtToken', response.token);
           console.log('JWT Token saved to local storage.');
+          this.router.navigate(['/']); // Navigate to home page after successful login
         }
       },
       (error) => {

@@ -1,14 +1,14 @@
 <header></header>
 <search-bra></search-bra>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 m-2">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 bg-gray-100">
   <div
     *ngFor="let item of bookData"
-    class="rounded-lg shadow-md overflow-hidden"
+    class="rounded-lg shadow-md overflow-hidden bg-white m-2"
   >
     <img
       src="{{ item.bookLogo }}"
       alt="Book Cover"
-      class="w-full h-48 object-cover"
+      class="w-full h-48 object-cover hover:scale-110 transition duration-500"
     />
     <div class="p-2">
       <div class="flex justify-between items-center">
@@ -24,8 +24,9 @@
         <span class="text-red-500 font-bold">₹ {{ item.bookPrize }}</span>
       </p>
       <a
+        (click)="addToCart(item.bookId)"
         href="#"
-        class="mt-2 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-green-500 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300"
+        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-green-500 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300"
       >
         Add to Cart
       </a>

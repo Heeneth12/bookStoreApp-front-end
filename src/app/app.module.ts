@@ -12,6 +12,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { FormsModule } from '@angular/forms';
 import { SearchBraComponent } from './header/search-bra/search-bra.component';
 import { ProfileComponent } from './profile/profile.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ProfileComponent } from './profile/profile.component';
     RegisterComponent,
     SearchBraComponent,
     ProfileComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,21 +1,19 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { response } from 'express';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
+  styleUrls: ['./home.component.css'], // Changed styleUrl to styleUrls
 })
 export class HomeComponent {
   bookData: any;
+  cartUserData: any;
 
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-
     this.getBookData();
   }
 
@@ -24,5 +22,21 @@ export class HomeComponent {
     this.http.get<any>(url).subscribe((response) => {
       this.bookData = response;
     });
+  }
+
+  addToCart(bookID: any) {
+    const token = localStorage.getItem('jwtToken');
+    const headers = new HttpHeaders().set('token', `${token}`);
+    this.cartUserData = {
+      bookId: bookID,
+      quantity: 2,
+    };
+
+    const url = 'http://localhost:8081/addToCart';
+    this.http
+      .post<any>(url, this.cartUserData, { headers }) // Moved headers to the correct position
+      .subscribe((response) => {
+        console.log(response);
+      });
   }
 }

@@ -1,0 +1,40 @@
+<header></header>
+<div class="container mx-auto mt-12">
+  <div
+    class="grid gap-4 grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2"
+  >
+    <div
+      class="bg-white shadow-md rounded-md p-4 flex items-center justify-between space-x-4 transition duration-300 transform hover:-translate-y-1 hover:shadow-lg"
+      *ngFor="let item of data"
+    >
+      <div>
+        <img
+          class="img rounded"
+          [src]="item.bookEntity.bookLogo"
+          alt="Book Logo"
+        />
+        <h2 class="text-lg font-semibold text-gray-800">
+          {{ item.bookEntity.bookName }}
+        </h2>
+      </div>
+      <div>
+        <p class="text-sm text-gray-600">
+          {{ item.bookEntity.bookDescription }}
+        </p>
+        <p class="text-sm text-gray-600">
+          Author: {{ item.bookEntity.bookAuthor }}
+        </p>
+        <p class="text-sm text-gray-600">
+          {{ item.bookEntity.bookDescription }}
+        </p>
+      </div>
+      <div>
+        <p class="text-sm text-gray-600">
+          Price: ${{ item.bookEntity.bookPrize }}
+        </p>
+        <p class="text-sm text-gray-600">Quantity: {{ item.cartQuantity }}</p>
+        <p class="text-sm text-gray-600">Total: ${{ item.cartTotalPrice }}</p>
+      </div>
+    </div>
+  </div>
+</div>
