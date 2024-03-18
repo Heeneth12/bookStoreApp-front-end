@@ -2,3 +2,8 @@
   width: 20vh;
   height: 14vh;
 }
+
+.button {
+  border-color: black;
+  border-width: 1.5px;
+}

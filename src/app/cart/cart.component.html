@@ -13,9 +13,12 @@
           [src]="item.bookEntity.bookLogo"
           alt="Book Logo"
         />
-        <h2 class="text-lg font-semibold text-gray-800">
-          {{ item.bookEntity.bookName }}
-        </h2>
+        <div class="justify-center items-center flex">
+          <h2 class="text-lg font-sans text-gray-600">
+            {{ item.bookEntity.bookName }}
+            {{ item.cartId }}
+          </h2>
+        </div>
       </div>
       <div>
         <p class="text-sm text-gray-600">
@@ -27,14 +30,48 @@
         <p class="text-sm text-gray-600">
           {{ item.bookEntity.bookDescription }}
         </p>
+        <div>
+          <p>Qn : 2</p>
+        </div>
       </div>
       <div>
         <p class="text-sm text-gray-600">
           Price: ${{ item.bookEntity.bookPrize }}
         </p>
         <p class="text-sm text-gray-600">Quantity: {{ item.cartQuantity }}</p>
-        <p class="text-sm text-gray-600">Total: ${{ item.cartTotalPrice }}</p>
+        <p class="text-sm font-bold text-gray-600">
+          Total: $ {{ item.cartTotalPrice }}
+        </p>
+        <div>
+          <button
+            (click)="removeFormCartByCartID(item.cartId)"
+            class="button p-2 rounded-md"
+          >
+            remove
+          </button>
+        </div>
       </div>
+    </div>
+  </div>
+  <div>
+    <div
+      class="shadow-md rounded-md text-gray-700 p-4 flex items-center justify-between space-x-4 transition duration-300 transform hover:-translate-y-1 hover:shadow-lg mt-8 border-1"
+    >
+      <h1>Customer details</h1>
+    </div>
+  </div>
+  <div>
+    <div
+      class="shadow-md text-gray-700 rounded-md p-4 flex items-center justify-between space-x-4 transition duration-300 transform hover:-translate-y-1 hover:shadow-lg mt-8 border-1"
+    >
+      <h1>Order Summery</h1>
+    </div>
+  </div>
+  <div>
+    <div class="mt-8 md-12 rounded-md">
+      <button class="p-4 font-bold hover:bg-gray-200 rounded-md button">
+        Place Order
+      </button>
     </div>
   </div>
 </div>
