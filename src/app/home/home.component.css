@@ -1,0 +1,10 @@
+.wishlistButton {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 2px;
+}
+.addButton {
+  background-color: #a03037;
+  color: white;
+  border-radius: 2px;
+}

@@ -3,6 +3,7 @@ import { HttpClient, HttpHandler, HttpHeaders } from '@angular/common/http';
 import { response } from 'express';
 import { Router } from '@angular/router'; // Import Router module
 
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -10,6 +11,14 @@ import { Router } from '@angular/router'; // Import Router module
 })
 export class CartComponent {
   data: any;
+  customerTogle: boolean = false;
+  condition: any;
+  showForm: boolean = false;
+  userAddress: string = '';
+  userCity: any;
+  userPinCode: any;
+  userPhoneNumber: any;
+  showOrderSummary: boolean = false;
 
   constructor(private http: HttpClient, private router: Router) {
     this.cartData(); // Invoke cartData() method in the constructor
@@ -44,5 +53,12 @@ export class CartComponent {
         alert('Error removing item from cart. Please try again later.'); // Example of displaying an error message
       }
     );
+  }
+
+  toggleForm() {
+    this.showForm = !this.showForm;
+  }
+  toggleOrderSummary() {
+    this.showOrderSummary = !this.showOrderSummary;
   }
 }

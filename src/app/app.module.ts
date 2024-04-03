@@ -12,8 +12,9 @@ import { RegisterComponent } from './auth/register/register.component';
 import { FormsModule } from '@angular/forms';
 import { SearchBraComponent } from './header/search-bra/search-bra.component';
 import { ProfileComponent } from './profile/profile.component';
-import { CartComponent } from './cart/cart.component';
 import { FooterComponent } from './footer/footer.component';
+import { OrdersComponent } from './orders/orders.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -24,8 +25,9 @@ import { FooterComponent } from './footer/footer.component';
     RegisterComponent,
     SearchBraComponent,
     ProfileComponent,
-    CartComponent,
     FooterComponent,
+    // OrdersComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,

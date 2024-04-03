@@ -7,3 +7,10 @@
   border-color: black;
   border-width: 1.5px;
 }
+.height {
+  height: 90vh;
+}
+
+.mat-mdc-radio-button ~ .mat-mdc-radio-button {
+  margin-left: 16px;
+}

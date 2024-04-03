@@ -1,9 +1,15 @@
 .nav {
-  /* Center the main navigation items */
-  justify-content: center;
+  background-color: #a03037;
 }
 
 .flex.items-center.space-x-4 > a:last-child {
   /* Move the last child (Login) to the right corner */
   margin-left: auto;
+}
+
+.input {
+  padding: 8px;
+  width: 40%;
+  border-radius: 3px;
+  color: black;
 }
