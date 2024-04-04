@@ -26,7 +26,7 @@ import { CartComponent } from './cart/cart.component';
     SearchBraComponent,
     ProfileComponent,
     FooterComponent,
-    // OrdersComponent,
+    OrdersComponent,
     CartComponent,
   ],
   imports: [

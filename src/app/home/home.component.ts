@@ -29,7 +29,7 @@ export class HomeComponent {
     const headers = new HttpHeaders().set('token', `${token}`);
     this.cartUserData = {
       bookId: bookID,
-      quantity: 2,
+      quantity: 1,
     };
 
     const url = 'http://localhost:8081/addToCart';

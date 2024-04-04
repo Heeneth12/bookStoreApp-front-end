@@ -10,7 +10,7 @@
       <div>
         <img
           class="img rounded"
-          [src]="item.bookEntity.bookLogo"
+          src="../assets/images/{{ item.bookEntity.bookLogo }}"
           alt="Book Logo"
         />
         <div class="justify-center items-center flex">
@@ -69,11 +69,11 @@
   </div>
   <div>
     <div class="mt-8 md-12 rounded-md">
-      <button class="p-4 font-bold hover:bg-gray-200 rounded-md button">
-        Place Order
-      </button>
+      <a href="/orders">
+        <button class="p-4 font-bold hover:bg-gray-200 rounded-md button">
+          Place Order
+        </button>
+      </a>
     </div>
   </div>
 </div>
-
-<app-footer></app-footer>

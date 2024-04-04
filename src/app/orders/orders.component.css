@@ -5,3 +5,71 @@
   font-weight: 200;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+.orderImg {
+  height: 50%;
+  width: 100%;
+}
+
+.img {
+  width: 10%;
+  height: 25vh;
+}
+
+table {
+  border-collapse: collapse;
+  width: 75%;
+  text-align: center;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.thead {
+  border: 1px solid black;
+}
+th {
+  background: #fafafa 0% 0% no-repeat padding-box;
+  border: 1px solid #dcdcdc;
+  text-align: center;
+  padding: 14px;
+}
+td {
+  border: 1px solid #e2e2e2;
+  text-align: center;
+  padding: 18px;
+}
+
+.shippingButton {
+  background-color: #3371b5;
+  border-radius: 3px;
+}
+/* CSS to position the text on top of the image */
+.orderImg {
+  position: relative;
+}
+
+.centered {
+  margin-top: 2%;
+  position: absolute;
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(
+    -50%,
+    -50%
+  ); /* Move it back by half of its own width and height */
+  font-size: 24px; /* Adjust font size as needed */
+  color: #333232;
+  font-weight: 500;
+}
+
+.tableDiv {
+  margin-top: 5%;
+  text-align: center;
+}
