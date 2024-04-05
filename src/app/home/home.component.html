@@ -1,9 +1,9 @@
-<header></header>
+<header (updatedName)="GetData($event)"></header>
 <search-bra></search-bra>
 <div class="lg:px-44 sm:px-4">
   <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
     <div
-      *ngFor="let item of bookData"
+      *ngFor="let item of filteredBooks"
       class="shadow-sm bookCard overflow-hidden"
     >
       <div class="imgDiv py-4">

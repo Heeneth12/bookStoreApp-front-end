@@ -3,14 +3,17 @@ import { HttpClient, HttpHandler, HttpHeaders } from '@angular/common/http';
 import { response } from 'express';
 import { Router } from '@angular/router'; // Import Router module
 
-
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent {
+  toggleCustomer: boolean = false;
+
   data: any;
+  address: any;
+
   customerTogle: boolean = false;
   condition: any;
   showForm: boolean = false;
@@ -18,6 +21,7 @@ export class CartComponent {
   userCity: any;
   userPinCode: any;
   userPhoneNumber: any;
+
   showOrderSummary: boolean = false;
 
   constructor(private http: HttpClient, private router: Router) {
@@ -45,8 +49,7 @@ export class CartComponent {
     this.http.post(url, {}, { headers, responseType: 'text' }).subscribe(
       (response) => {
         console.log(response);
-        this.router.navigate(['cart']); // Navigation after successful request
-        window.location.reload();
+        this.cartData();
       },
       (error) => {
         console.error('Error removing item from cart:', error);
@@ -55,10 +58,23 @@ export class CartComponent {
     );
   }
 
-  toggleForm() {
-    this.showForm = !this.showForm;
+  getUserAddressByjwt() {
+    const token = localStorage.getItem('jwtToken');
+    const url = 'http://localhost:8081/getByJWT';
+    const headers = new HttpHeaders().set('token', `${token}`);
+
+    this.http.get<any>(url, { headers }).subscribe((response) => {
+      console.log(response.address);
+      this.address = response.address;
+      this.toggleCustomerDetails();
+    });
   }
+
   toggleOrderSummary() {
     this.showOrderSummary = !this.showOrderSummary;
+  }
+
+  toggleCustomerDetails() {
+    this.toggleCustomer = !this.toggleCustomer;
   }
 }

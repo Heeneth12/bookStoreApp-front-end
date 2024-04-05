@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
@@ -10,6 +10,10 @@ export class HeaderComponent implements OnInit {
   isOpen: boolean = false;
   showDropdown: boolean = false;
   public userData: any;
+
+  inputData: string = '';
+
+  @Output() updatedName = new EventEmitter<string>();
 
   constructor(private http: HttpClient) {}
 
@@ -49,5 +53,11 @@ export class HeaderComponent implements OnInit {
     } else {
       console.error('Token is null.'); // Handle case where token is null
     }
+  }
+  onInputChange(newValue: string) {
+    // Do something with the new value, if needed
+    this.inputData = newValue;
+    this.updatedName.emit(this.inputData);
+    console.log('Input value changed to:', newValue);
   }
 }

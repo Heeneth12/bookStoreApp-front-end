@@ -1,79 +1,228 @@
 <header></header>
 <div class="container mx-auto mt-12">
-  <div
-    class="grid gap-4 grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2"
-  >
+  <div class="flex-col cartContainer">
     <div
-      class="bg-white shadow-md rounded-md p-4 flex items-center justify-between space-x-4 transition duration-300 transform hover:-translate-y-1 hover:shadow-lg"
-      *ngFor="let item of data"
+      class="grid gap-4 p-2 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
     >
-      <div>
-        <img
-          class="img rounded"
-          src="../assets/images/{{ item.bookEntity.bookLogo }}"
-          alt="Book Logo"
-        />
-        <div class="justify-center items-center flex">
-          <h2 class="text-lg font-sans text-gray-600">
-            {{ item.bookEntity.bookName }}
-            {{ item.cartId }}
-          </h2>
+      <div
+        class="cartCard py-12 pl-6 flex justify-between space-x-2 transition duration-300 transform hover:-translate-y-1 hover:shadow-lg"
+        *ngFor="let item of data"
+      >
+        <div class="flex">
+          <div class="">
+            <img
+              class="img"
+              src="../assets/images/{{ item.bookEntity.bookLogo }}"
+              alt="Book Logo"
+            />
+          </div>
+          <div>
+            <p class="bookName">
+              {{ item.bookEntity.bookName }}
+            </p>
+            <p class="text-sm text-gray-600">
+              by {{ item.bookEntity.bookAuthor }}
+            </p>
+            <p class="bookPrize">
+              Rs.
+              {{ item.bookEntity.bookPrize }}
+            </p>
+            <div>
+              <div class="flex justify-between items-center">
+                <div>
+                  <form class="max-w-xs mx-auto">
+                    <div class="relative flex items-center max-w-[8rem]">
+                      <button
+                        type="button"
+                        data-input-counter-decrement="quantity-input"
+                        class="svg"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                          class="w-2 h-2"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M4 10a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H4.75A.75.75 0 0 1 4 10Z"
+                            clip-rule="evenodd"
+                          />
+                        </svg>
+                      </button>
+                      <input
+                        type="text"
+                        class="input mx-2"
+                        placeholder="999"
+                        value="1"
+                        required
+                      />
+                      <button
+                        type="button"
+                        id="increment-button"
+                        data-input-counter-increment="quantity-input"
+                        class="svg"
+                      >
+                        <svg
+                          class="w-2 h-2"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 18 18"
+                        >
+                          <path
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M9 1v16M1 9h16"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </form>
+                </div>
+
+                <div>
+                  <button
+                    (click)="removeFormCartByCartID(item.cartId)"
+                    class="remove mx-6"
+                  >
+                    Remove
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div>
-        <p class="text-sm text-gray-600">
-          {{ item.bookEntity.bookDescription }}
-        </p>
-        <p class="text-sm text-gray-600">
-          Author: {{ item.bookEntity.bookAuthor }}
-        </p>
-        <p class="text-sm text-gray-600">
-          {{ item.bookEntity.bookDescription }}
-        </p>
+    </div>
+    <div class="placeOrderDiv">
+      <button class="placeOrder p-2 px-8 m-6" (click)="getUserAddressByjwt()">
+        Place order
+      </button>
+    </div>
+  </div>
+  <div>
+    <div>
+      <div
+        class="detailCard p-4 space-x-4 transition duration-300 transform hover:-translate-y-1 hover:shadow-lg mt-8"
+      >
         <div>
-          <p>Qn : 2</p>
+          <h1>Customer Details</h1>
+        </div>
+
+        <div *ngIf="toggleCustomer" class="flex-col">
+          <div class="flex justify-left">
+            <div class="formDiv">
+              <form action="">
+                <div class="">
+                  <div class="flex py-2">
+                    <input
+                      class="customerInput"
+                      placeholder="Name"
+                      type="text"
+                      value="heeneth"
+                    />
+                    <input
+                      class="customerInput"
+                      placeholder="Phone number"
+                      type="number"
+                      value="{{ address.phoneNumber }}"
+                    />
+                  </div>
+                  <div class="flex py-2">
+                    <input
+                      class="customerInput"
+                      placeholder="Pincode"
+                      type="text"
+                      [value]="address.pinCode"
+                    />
+                    <input
+                      class="customerInput"
+                      placeholder="Locality"
+                      type="text"
+                      [value]="address.locality"
+                    />
+                  </div>
+                  <div class="py-2">
+                    <textarea
+                      class="textarea"
+                      placeholder="Address"
+                      [value]="address.address"
+                    >
+                    </textarea>
+                  </div>
+                  <div class="flex py-2">
+                    <input
+                      class="customerInput"
+                      placeholder="city"
+                      type="text"
+                      [value]="address.city"
+                    />
+                    <input
+                      class="customerInput"
+                      placeholder="Landmark"
+                      type="text"
+                      [value]="address.landmark"
+                    />
+                  </div>
+                  <div class="flex justify-left">
+                    <div class="mr-8">
+                      <input placeholder="Name" type="radio" />
+                      <label>Home</label>
+                    </div>
+                    <div class="mr-8">
+                      <input placeholder="Name" type="radio" />
+                      <label>Work</label>
+                    </div>
+                    <div class="mr-8">
+                      <input placeholder="Name" type="radio" />
+                      <label>Other</label>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="button-container">
+            <button (click)="toggleOrderSummary()" class="continue px-12">
+              CONTINUE
+            </button>
+          </div>
         </div>
       </div>
-      <div>
-        <p class="text-sm text-gray-600">
-          Price: ${{ item.bookEntity.bookPrize }}
-        </p>
-        <p class="text-sm text-gray-600">Quantity: {{ item.cartQuantity }}</p>
-        <p class="text-sm font-bold text-gray-600">
-          Total: $ {{ item.cartTotalPrice }}
-        </p>
+    </div>
+
+    <div>
+      <div
+        class="orderCard p-4 items-center space-x-4 transition duration-300 transform hover:-translate-y-1 hover:shadow-lg mt-8 border-1"
+      >
         <div>
-          <button
-            (click)="removeFormCartByCartID(item.cartId)"
-            class="button p-2 rounded-md"
-          >
-            remove
-          </button>
+          <h1 class="orderSummery">Order Summery</h1>
+        </div>
+        <div *ngIf="showOrderSummary" class="flex-col">
+          <div class="flex" *ngFor="let item of data">
+            <div>
+              <img
+                class="img"
+                src="../assets/images/{{ item.bookEntity.bookLogo }}"
+              />
+            </div>
+            <div>
+              <h3 class="">{{ item.bookEntity.bookName }}</h3>
+              <p class="">{{ item.bookEntity.bookAuthor }}</p>
+              <h1 class="">{{ item.bookEntity.bookPrize }}</h1>
+            </div>
+          </div>
+          <div class="my-4 p-4">
+            <a href="/orders">
+              <button class="checkout p-2 px-6">CHECKOUT</button>
+            </a>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-  <div>
-    <div
-      class="shadow-md rounded-md text-gray-700 p-4 flex items-center justify-between space-x-4 transition duration-300 transform hover:-translate-y-1 hover:shadow-lg mt-8 border-1"
-    >
-      <h1>Customer details</h1>
-    </div>
-  </div>
-  <div>
-    <div
-      class="shadow-md text-gray-700 rounded-md p-4 flex items-center justify-between space-x-4 transition duration-300 transform hover:-translate-y-1 hover:shadow-lg mt-8 border-1"
-    >
-      <h1>Order Summery</h1>
-    </div>
-  </div>
-  <div>
-    <div class="mt-8 md-12 rounded-md">
-      <a href="/orders">
-        <button class="p-4 font-bold hover:bg-gray-200 rounded-md button">
-          Place Order
-        </button>
-      </a>
     </div>
   </div>
 </div>
