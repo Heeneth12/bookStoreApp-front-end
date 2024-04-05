@@ -33,11 +33,15 @@ export class HomeComponent {
     };
 
     const url = 'http://localhost:8081/addToCart';
-    this.http
-      .post<any>(url, this.cartUserData, { headers })
-      .subscribe((response) => {
+    this.http.post<any>(url, this.cartUserData, { headers }).subscribe(
+      (response) => {
         console.log(response);
-      });
+      },
+      (error) => {
+        console.error(error); // Log any errors
+        // Handle errors as needed
+      }
+    );
   }
 
   // Getter function to dynamically filter bookData based on searchData

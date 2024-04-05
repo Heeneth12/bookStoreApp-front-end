@@ -11,6 +11,9 @@ import { Router } from '@angular/router'; // Import Router module
 export class CartComponent {
   toggleCustomer: boolean = false;
 
+  orderSummeryData: any;
+  userData: any;
+
   data: any;
   address: any;
 
@@ -66,6 +69,7 @@ export class CartComponent {
     this.http.get<any>(url, { headers }).subscribe((response) => {
       console.log(response.address);
       this.address = response.address;
+      this.userData = response;
       this.toggleCustomerDetails();
     });
   }
@@ -76,5 +80,39 @@ export class CartComponent {
 
   toggleCustomerDetails() {
     this.toggleCustomer = !this.toggleCustomer;
+  }
+
+  placeOrder() {
+    const url = 'http://localhost:8081/placeOrder';
+    const orderPrice = this.data.reduce(
+      (total: any, item: { cartTotalPrice: any }) =>
+        total + item.cartTotalPrice,
+      0
+    );
+    const currentDate = new Date();
+
+    const body = {
+      // Construct the request body with DTO values
+      orderData: currentDate,
+      orderPrice: orderPrice,
+      orderQuantity: this.data.length,
+      orderCancel: false,
+      userID: this.userData.id, // Assuming you have this property in userData
+    };
+    this.http.post<any>(url, body).subscribe(
+      (response) => {
+        // Handle successful response
+        console.log(response);
+        if (response.message == 'order successful') {
+          this.router.navigate(['/orders']);
+        }
+      },
+      (error) => {
+        // Handle error response
+        console.error('Error placing order:', error);
+        // Optionally, display an error message to the user
+        alert('Error placing order. Please try again later.');
+      }
+    );
   }
 }

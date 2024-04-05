@@ -202,24 +202,28 @@
         <div>
           <h1 class="orderSummery">Order Summery</h1>
         </div>
-        <div *ngIf="showOrderSummary" class="flex-col">
-          <div class="flex" *ngFor="let item of data">
-            <div>
-              <img
-                class="img"
-                src="../assets/images/{{ item.bookEntity.bookLogo }}"
-              />
-            </div>
-            <div>
-              <h3 class="">{{ item.bookEntity.bookName }}</h3>
-              <p class="">{{ item.bookEntity.bookAuthor }}</p>
-              <h1 class="">{{ item.bookEntity.bookPrize }}</h1>
+        <div *ngIf="showOrderSummary">
+          <div
+            class="grid gap-4 p-2 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+          >
+            <div class="flex" *ngFor="let item of data">
+              <div>
+                <img
+                  class="img"
+                  src="../assets/images/{{ item.bookEntity.bookLogo }}"
+                />
+              </div>
+              <div>
+                <h3 class="font-bold">{{ item.bookEntity.bookName }}</h3>
+                <p class="text-sm">by {{ item.bookEntity.bookAuthor }}</p>
+                <p class="text-sm">Rs. {{ item.bookEntity.bookPrize }}</p>
+              </div>
             </div>
           </div>
           <div class="my-4 p-4">
-            <a href="/orders">
-              <button class="checkout p-2 px-6">CHECKOUT</button>
-            </a>
+            <button class="checkout p-2 px-6" (click)="placeOrder()">
+              CHECKOUT
+            </button>
           </div>
         </div>
       </div>

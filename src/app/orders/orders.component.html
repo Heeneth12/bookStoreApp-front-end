@@ -11,8 +11,8 @@
   <div class="justify-center items-center flex mt-12 px-32">
     <p class="font-medium text-lg text-gray-700 text-center">
       hurray!!! your order is confirmed<br />
-      the order id is #123456 save the order id <br />for further
-      communicamation..
+      the order id is #{{ latestOrder?.orderId }} save the order id <br />for
+      further communication..
     </p>
   </div>
 
@@ -29,11 +29,10 @@
       </thead>
       <tbody>
         <tr class="tr">
-          <td class="p-6">heeneth123gmail.com</td>
-          <td class="p-6">+91 6304781014</td>
+          <td class="p-6">{{ userData.email }}</td>
+          <td class="p-6">+91 {{ userData.address.phoneNumber }}</td>
           <td class="p-6">
-            42, 14th Main, 15th Cross, Sector 4 ,opp to BDA complex, near
-            Kumarakom restaurant, HSR Layout, Bangalore 560034
+            {{ userData.address.address }}
           </td>
         </tr>
       </tbody>
