@@ -46,21 +46,31 @@ export class HomeComponent {
       return this.bookData; // Return all books if no search query or bookData is undefined
     }
 
-    // Filter books with the name "all" and store them in a separate array
-    const booksWithAllName = this.bookData.filter(
-      (book: { title?: string }) =>
-        book.title && book.title.toLowerCase().includes('all')
-    );
+    const searchTerm = this.searchData.toLowerCase();
 
-    // Filter the rest of the books that don't have the name "all"
-    const otherBooks = this.bookData.filter(
-      (book: { title?: string }) =>
-        book.title && !book.title.toLowerCase().includes('all')
-    );
-
-    // Concatenate the two arrays with books with the name "all" coming first
-    return [...booksWithAllName, ...otherBooks];
+    return this.bookData
+      .filter((book: { bookName?: string }) => {
+        if (book.bookName && book.bookName.toLowerCase().includes(searchTerm)) {
+          return true; // Keep books whose title includes the search term
+        } else {
+          return false; // Exclude books that don't match the search term
+        }
+      })
+      .sort((a: any, b: any) => {
+        // Custom sorting function to ensure books whose title starts with the search term come first
+        if (a.bookName && a.bookName.toLowerCase().startsWith(searchTerm)) {
+          return -1; // Books whose title starts with the search term come first
+        } else if (
+          b.bookName &&
+          b.bookName.toLowerCase().startsWith(searchTerm)
+        ) {
+          return 1; // Other books come after books whose title starts with the search term
+        } else {
+          return 0; // Maintain original order for other books
+        }
+      });
   }
+
   GetData(name: string) {
     this.searchData = name;
     console.log('from home' + this.searchData);

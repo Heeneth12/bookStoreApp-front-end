@@ -15,6 +15,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { FooterComponent } from './footer/footer.component';
 import { OrdersComponent } from './orders/orders.component';
 import { CartComponent } from './cart/cart.component';
+import { NgxSearchFilterModule } from 'ngx-search-filter';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { CartComponent } from './cart/cart.component';
     MatSlideToggleModule,
     HttpClientModule,
     FormsModule,
+    NgxSearchFilterModule,
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],

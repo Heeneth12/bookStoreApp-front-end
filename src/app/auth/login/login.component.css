@@ -1,0 +1,10 @@
+.loginButton {
+  background-color: brown;
+  color: white;
+  border-radius: 2px;
+  font-weight: 400;
+}
+
+.forgot {
+  color: brown;
+}
