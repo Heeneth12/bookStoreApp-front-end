@@ -25,12 +25,18 @@
           <span class="font-bold">Rs. {{ item.bookPrize }}</span>
         </p>
 
-        <div class="flex justify-between items-center">
+        <div
+          class="flex justify-between items-center"
+          *ngIf="!isAddedToCart(item.bookId); else addedToCartButton"
+        >
           <button (click)="addToCart(item.bookId)" class="addButton p-2">
             Add TO BAG
           </button>
           <button class="wishlistButton p-2">WISHlIST</button>
         </div>
+        <ng-template #addedToCartButton>
+          <button class="addedToBag p-2">ADDED TO BAG</button>
+        </ng-template>
       </div>
     </div>
   </div>

@@ -7,6 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
+  addedToCartIds: any[] = [];
   bookData: any;
   cartUserData: any;
   searchData: string = '';
@@ -36,6 +37,7 @@ export class HomeComponent {
     this.http.post<any>(url, this.cartUserData, { headers }).subscribe(
       (response) => {
         console.log(response);
+        this.addedToCartIds.push(bookID);
       },
       (error) => {
         console.error(error); // Log any errors
@@ -78,5 +80,9 @@ export class HomeComponent {
   GetData(name: string) {
     this.searchData = name;
     console.log('from home' + this.searchData);
+  }
+  // Check if a book has been added to the cart
+  isAddedToCart(bookID: any) {
+    return this.addedToCartIds.includes(bookID);
   }
 }

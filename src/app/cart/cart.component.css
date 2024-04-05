@@ -88,6 +88,8 @@
   margin-right: 6px;
   border-radius: 2px;
   width: 100%;
+  resize: none;
+  padding: 3px;
 }
 
 .formDiv {
@@ -115,4 +117,7 @@
 }
 .button-container {
   text-align: right;
+}
+
+.orderSummeryBookName {
 }
