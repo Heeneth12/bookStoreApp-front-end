@@ -11,6 +11,8 @@ export class HeaderComponent implements OnInit {
   showDropdown: boolean = false;
   public userData: any;
 
+  cartItemsCount: number = 0;
+
   inputData: string = '';
 
   @Output() updatedName = new EventEmitter<string>();
@@ -19,6 +21,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchToken();
+    this.cartItemsCountData();
   }
   logout() {
     localStorage.removeItem('jwtToken');
@@ -59,5 +62,17 @@ export class HeaderComponent implements OnInit {
     this.inputData = newValue;
     this.updatedName.emit(this.inputData);
     console.log('Input value changed to:', newValue);
+  }
+
+  cartItemsCountData() {
+    const url = 'http://localhost:8081/getAllCartItems';
+    const token = localStorage.getItem('jwtToken');
+
+    const headers = new HttpHeaders().set('token', `${token}`);
+
+    this.http.get<any>(url, { headers }).subscribe((response) => {
+      this.cartItemsCount = response.length;
+      console.log('CartItemsCount' + this.cartItemsCount);
+    });
   }
 }

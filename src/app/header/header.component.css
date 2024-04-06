@@ -13,3 +13,13 @@
   border-radius: 3px;
   color: black;
 }
+
+.cartSvgNum {
+  color: #a03037;
+  background-color: aliceblue;
+  height: 18px;
+
+  font-size: small;
+  border-radius: 100%;
+  position: relative;
+}

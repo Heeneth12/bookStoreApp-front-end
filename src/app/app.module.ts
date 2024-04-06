@@ -9,13 +9,14 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchBraComponent } from './header/search-bra/search-bra.component';
 import { ProfileComponent } from './profile/profile.component';
 import { FooterComponent } from './footer/footer.component';
 import { OrdersComponent } from './orders/orders.component';
 import { CartComponent } from './cart/cart.component';
 import { NgxSearchFilterModule } from 'ngx-search-filter';
+import { MyOrdersListComponent } from './my-orders-list/my-orders-list.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { NgxSearchFilterModule } from 'ngx-search-filter';
     FooterComponent,
     OrdersComponent,
     CartComponent,
+    MyOrdersListComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +39,7 @@ import { NgxSearchFilterModule } from 'ngx-search-filter';
     HttpClientModule,
     FormsModule,
     NgxSearchFilterModule,
+    ReactiveFormsModule,
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],
