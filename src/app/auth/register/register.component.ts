@@ -35,4 +35,10 @@ export class RegisterComponent {
       this.router.navigate(['/login']);
     });
   }
+
+  ngOnInit(): void {
+    if (localStorage.getItem('jwtToken')) {
+      this.router.navigate(['/']);
+    }
+  }
 }

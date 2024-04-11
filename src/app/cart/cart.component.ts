@@ -13,10 +13,8 @@ export class CartComponent {
 
   orderSummeryData: any;
   userData: any;
-
   data: any;
   address: any;
-
   customerTogle: boolean = false;
   condition: any;
   showForm: boolean = false;
@@ -82,6 +80,16 @@ export class CartComponent {
     this.toggleCustomer = !this.toggleCustomer;
   }
 
+  //which  make boolien value true for cart entiry help to identfy the order confirm
+  confirmOrder() {
+    const url = 'http://localhost:8081/confirmOrder';
+    const token = localStorage.getItem('jwtToken');
+    const headers = new HttpHeaders().set('token', `${token}`);
+    this.http.put<any>(url, { headers }).subscribe((response) => {
+      console.log(response);
+    });
+  }
+
   placeOrder() {
     const url = 'http://localhost:8081/placeOrder';
     const orderPrice = this.data.reduce(
@@ -98,6 +106,7 @@ export class CartComponent {
       orderQuantity: this.data.length,
       orderCancel: false,
       userID: this.userData.id, // Assuming you have this property in userData
+      // cartID:
     };
     this.http.post<any>(url, body).subscribe(
       (response) => {
