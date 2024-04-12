@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
@@ -12,6 +12,8 @@ export class HomeComponent {
   cartUserData: any;
   searchData: string = '';
 
+  @Output() numberOfBooks: number = 5;
+
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
@@ -22,6 +24,8 @@ export class HomeComponent {
     const url = 'http://localhost:8081/getAllBooks';
     this.http.get<any>(url).subscribe((response) => {
       this.bookData = response;
+      this.numberOfBooks = response.length;
+      console.log(this.bookData);
     });
   }
 

@@ -7,8 +7,6 @@ import { HeaderComponent } from './header/header.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './auth/login/login.component';
-import { RegisterComponent } from './auth/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchBraComponent } from './header/search-bra/search-bra.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -23,8 +21,6 @@ import { MyOrdersListComponent } from './my-orders-list/my-orders-list.component
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    LoginComponent,
-    RegisterComponent,
     SearchBraComponent,
     ProfileComponent,
     FooterComponent,

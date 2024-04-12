@@ -53,9 +53,9 @@ export class LoginComponent {
   }
 
   //logic to not to route login page when user already login
-  ngOnInit(): void {
-    if (localStorage.getItem('jwtToken')) {
-      this.router.navigate(['/']);
-    }
-  }
+  // ngOnInit(): void {
+  //   if (localStorage.getItem('jwtToken')) {
+  //     this.router.navigate(['/']);
+  //   }
+  // }
 }
