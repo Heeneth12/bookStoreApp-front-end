@@ -1,4 +1,4 @@
-import { Component, Output } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
@@ -12,7 +12,7 @@ export class HomeComponent {
   cartUserData: any;
   searchData: string = '';
 
-  @Output() numberOfBooks: number = 5;
+  @Output() numberOfBooks: number = 0;
 
   constructor(private http: HttpClient) {}
 
@@ -88,5 +88,27 @@ export class HomeComponent {
   // Check if a book has been added to the cart
   isAddedToCart(bookID: any) {
     return this.addedToCartIds.includes(bookID);
+  }
+
+  applySort(typeOfSort: string) {
+    if (typeOfSort === 'highToLow') {
+      this.sortBooksByPriceHighToLow();
+    } else if (typeOfSort === 'lowToHigh') {
+      this.sortBooksByPriceLowToHigh();
+    }
+  }
+
+  // Method to sort bookData by price in ascending order
+  sortBooksByPriceLowToHigh() {
+    this.bookData.sort((a: any, b: any) => {
+      return a.bookPrize - b.bookPrize;
+    });
+  }
+
+  // Method to sort bookData by price in descending order
+  sortBooksByPriceHighToLow() {
+    this.bookData.sort((a: any, b: any) => {
+      return b.bookPrize - a.bookPrize;
+    });
   }
 }

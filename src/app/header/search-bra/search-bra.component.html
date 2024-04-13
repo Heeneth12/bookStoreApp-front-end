@@ -3,14 +3,14 @@
     <h1 class="books">Books</h1>
     <h5 class="items">({{ numberOfItems }})</h5>
   </div>
-
   <select
     class="px-2 bg-white border border-gray-300 focus:outline-none"
     style="padding: 10px"
+    (change)="onSortChange($event)"
   >
     <option selected disabled>Sort by relevance</option>
-    <option>Option 1</option>
-    <option>Option 2</option>
-    <option>Option 3</option>
+    <option value="highToLow">Price: high to low</option>
+    <option value="lowToHigh">Price: low to high</option>
+    <option value="option3">Option 3</option>
   </select>
 </div>

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'search-bra',
@@ -7,4 +7,10 @@ import { Component, Input } from '@angular/core';
 })
 export class SearchBraComponent {
   @Input() numberOfItems: any;
+  @Output() typeOfSort: EventEmitter<string> = new EventEmitter<string>();
+
+  onSortChange(event: any) {
+    const selectedValue = event.target.value;
+    this.typeOfSort.emit(selectedValue);
+  }
 }

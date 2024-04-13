@@ -1,5 +1,9 @@
 <header (updatedName)="GetData($event)"></header>
-<search-bra [numberOfItems]="numberOfBooks"></search-bra>
+<search-bra
+  [numberOfItems]="numberOfBooks"
+  (typeOfSort)="applySort($event)"
+></search-bra>
+
 <div class="lg:px-44 sm:px-4">
   <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
     <div

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
@@ -11,7 +11,7 @@ export class HeaderComponent implements OnInit {
   showDropdown: boolean = false;
   public userData: any;
 
-  cartItemsCount: number = 0;
+  @Input() cartItemsCount: number = 0;
 
   inputData: string = '';
 
@@ -21,7 +21,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchToken();
-    this.cartItemsCountData();
   }
   logout() {
     localStorage.removeItem('jwtToken');
@@ -64,15 +63,5 @@ export class HeaderComponent implements OnInit {
     console.log('Input value changed to:', newValue);
   }
 
-  cartItemsCountData() {
-    const url = 'http://localhost:8081/getAllCartItems';
-    const token = localStorage.getItem('jwtToken');
 
-    const headers = new HttpHeaders().set('token', `${token}`);
-
-    this.http.get<any>(url, { headers }).subscribe((response) => {
-      this.cartItemsCount = response.length;
-      console.log('CartItemsCount' + this.cartItemsCount);
-    });
-  }
 }
