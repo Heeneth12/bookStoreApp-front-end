@@ -15,6 +15,7 @@ import { OrdersComponent } from './orders/orders.component';
 import { CartComponent } from './cart/cart.component';
 import { NgxSearchFilterModule } from 'ngx-search-filter';
 import { MyOrdersListComponent } from './my-orders-list/my-orders-list.component';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { MyOrdersListComponent } from './my-orders-list/my-orders-list.component
     OrdersComponent,
     CartComponent,
     MyOrdersListComponent,
+    ChatComponent,
   ],
   imports: [
     BrowserModule,
