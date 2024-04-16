@@ -1,0 +1,31 @@
+.chatBot {
+  background-color: brown;
+  padding: 10px;
+  margin: 14px;
+  border-radius: 50%;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 1000; /* Assign a higher value to increase z-index */
+}
+
+svg {
+  color: white;
+}
+
+.chatBox {
+  position: fixed;
+  margin: 14px;
+  bottom: 0;
+  right: 0;
+}
+.chatHeader {
+  background-color: brown;
+}
+
+button {
+  background-color: brown;
+}
+button:hover {
+  background-color: rgb(166, 21, 21);
+}
