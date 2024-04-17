@@ -3,10 +3,16 @@
   <div>
     <h1>Your Orders</h1>
   </div>
-  <div class="ordersList">
-    <img />
-    <h2>name heeneth</h2>
-    <p>this jnieif ienioenferf</p>
-    <h4>Deliverd 21 March</h4>
+  <div class="ordersList my-2 flex" *ngFor="let item of orderData">
+    <div>
+      <img class="img" src="../assets/images/{{ item.bookEntity.bookLogo }}" />
+    </div>
+
+    <div>
+      <h2>{{ item.cartId }}</h2>
+      <h2>{{ item.cartQuantity }}</h2>
+      <p>{{ item.cartTotalPrice }}</p>
+      <h4>Deliverd 21 March</h4>
+    </div>
   </div>
 </div>

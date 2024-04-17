@@ -29,3 +29,9 @@ button {
 button:hover {
   background-color: rgb(166, 21, 21);
 }
+
+.chat {
+  align-content: center;
+  text-align: center;
+  padding-top: 10px;
+}

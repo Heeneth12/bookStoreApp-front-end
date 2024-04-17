@@ -24,7 +24,7 @@
     class="chatHeader text-white py-2 px-4 flex justify-between items-center"
   >
     <!-- Chat bot header -->
-    <div>
+    <div class="flex items-center justify-center">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
@@ -37,6 +37,7 @@
           clip-rule="evenodd"
         />
       </svg>
+      <h3 class="chat">chat bot</h3>
     </div>
     <div (click)="chatBotHandle()">
       <svg
@@ -70,11 +71,11 @@
       #messageInput
       type="text"
       placeholder="Type your message..."
-      class="flex-1 px-2 py-1 border border-gray-400 mr-2 focus:outline-none focus:border-blue-500"
+      class="flex-1 px-2 py-1 border border-gray-400 focus:outline-none focus:border-blue-500"
     />
     <button
       (click)="sendMessage(messageInput.value)"
-      class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-1 px-4"
+      class="text-white font-semibold py-1 px-4"
     >
       Send
     </button>
