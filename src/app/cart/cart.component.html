@@ -221,7 +221,11 @@
             </div>
           </div>
           <div class="my-4 p-4">
-            <button class="checkout p-2 px-6" (click)="placeOrder()">
+            <button
+              class="checkout p-2 px-6"
+              (click)="confirmOrder()"
+              (click)="placeOrder()"
+            >
               CHECKOUT
             </button>
           </div>

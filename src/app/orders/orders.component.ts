@@ -1,11 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { response } from 'express';
 
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
-  styleUrl: './orders.component.css',
+  styleUrls: ['./orders.component.css'], // Corrected the property name
 })
 export class OrdersComponent {
   latestOrder: any;
@@ -14,9 +13,8 @@ export class OrdersComponent {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.orderData();
-    this.getUserAddressByjwt();
-    console.log(this.userData);
+    this.getUserAddressByjwt(); // Fetch user data first
+    this.orderData(); // Fetch order data afterwards
   }
 
   orderData() {
@@ -25,13 +23,11 @@ export class OrdersComponent {
     const url = 'http://localhost:8081/getOrdersByJWT';
     this.http.get<any[]>(url, { headers }).subscribe((response) => {
       if (response && response.length > 0) {
-        // Sort the response array based on orderData in descending order
         response.sort(
           (a, b) =>
             new Date(b.orderData).getTime() - new Date(a.orderData).getTime()
         );
-        this.latestOrder = response[0]; // Get the first element (most recent order) after sorting
-        console.log(this.latestOrder); // Log the most recent order data
+        this.latestOrder = response[0];
       } else {
         console.log('No orders found');
       }

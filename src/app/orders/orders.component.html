@@ -29,11 +29,9 @@
       </thead>
       <tbody>
         <tr class="tr">
-          <td class="p-6">{{ userData.email }}</td>
-          <td class="p-6">+91 {{ userData.address.phoneNumber }}</td>
-          <td class="p-6">
-            {{ userData.address.address }}
-          </td>
+          <td class="p-6">{{ userData?.email }}</td>
+          <td class="p-6">+91 {{ userData?.address?.phoneNumber }}</td>
+          <td class="p-6">{{ userData?.address?.address }}</td>
         </tr>
       </tbody>
     </table>

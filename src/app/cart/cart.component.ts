@@ -10,7 +10,6 @@ import { Router } from '@angular/router'; // Import Router module
 })
 export class CartComponent {
   toggleCustomer: boolean = false;
-
   orderSummeryData: any;
   userData: any;
   data: any;
@@ -85,13 +84,23 @@ export class CartComponent {
     const url = 'http://localhost:8081/confirmOrder';
     const token = localStorage.getItem('jwtToken');
     const headers = new HttpHeaders().set('token', `${token}`);
-    this.http.put<any>(url, { headers }).subscribe((response) => {
-      console.log(response);
-    });
+
+    this.http.post<any>(url, {}, { headers }).subscribe(
+      (response) => {
+        console.log('confirm:', response);
+      },
+      (error) => {
+        console.error('Error confirming order:', error);
+        alert('Error confirming order. Please try again later.');
+      }
+    );
   }
 
   placeOrder() {
     const url = 'http://localhost:8081/placeOrder';
+
+    console.log(this.userData.id);
+
     const orderPrice = this.data.reduce(
       (total: any, item: { cartTotalPrice: any }) =>
         total + item.cartTotalPrice,
@@ -105,9 +114,11 @@ export class CartComponent {
       orderPrice: orderPrice,
       orderQuantity: this.data.length,
       orderCancel: false,
+      cartID: 0,
       userID: this.userData.id, // Assuming you have this property in userData
-      // cartID:
     };
+    console.log('body');
+    console.log(body);
     this.http.post<any>(url, body).subscribe(
       (response) => {
         // Handle successful response
